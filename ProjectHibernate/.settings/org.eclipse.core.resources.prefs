@@ -5,6 +5,7 @@ encoding//src/main/java/com/bkap/entity/Category.java=UTF-8
 encoding//src/main/java/com/bkap/entity/Customer.java=UTF-8
 encoding//src/main/java/com/bkap/entity/Product.java=UTF-8
 encoding//src/main/java/com/bkap/entity/Users.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/Admin/Banner/header.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/Admin/category/details.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/Admin/category/insert.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/Admin/category/list.jsp=UTF-8

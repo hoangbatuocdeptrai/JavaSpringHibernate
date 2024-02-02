@@ -9,7 +9,7 @@ public class Admin {
 
 	@RequestMapping("")
 	public String index() {
-		return "/Admin/Banner/index";
+		return "/Admin/indesx";
 	}
 	
 }

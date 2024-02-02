@@ -22,7 +22,7 @@
 		</property>
 	</bean>
 	<mvc:resources location="/resources/"
-		mapping="/resource/**"></mvc:resources>
+		mapping="/resources/**"></mvc:resources>
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -36,7 +36,7 @@
 		<property name="url"
 			value="jdbc:sqlserver://localhost:1433;databaseName=ProjectHibernate" />
 		<property name="username" value="sa" />
-		<property name="password" value="hoang2002" />
+		<property name="password" value="123456" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
