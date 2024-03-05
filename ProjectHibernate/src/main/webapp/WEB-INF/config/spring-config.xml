@@ -28,15 +28,15 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="20000000"></property>
 	</bean>
-	
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 		<property name="url"
-			value="jdbc:sqlserver://localhost:1433;databaseName=ProjectHibernate" />
+			value="jdbc:sqlserver://localhost:1433;databaseName=SpringHibernate;integratedSecurity=true;encrypt=true;trustServerCertificate=true" />
 		<property name="username" value="sa" />
-		<property name="password" value="123456" />
+		<property name="password" value="hoang2002" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

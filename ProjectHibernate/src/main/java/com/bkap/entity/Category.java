@@ -11,6 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.bkap.dao.CategoryDao;
+import com.bkap.impl.CategoryDaoImpl;
+
 @Entity
 @Table(name = "Category")
 public class Category {
@@ -20,11 +23,11 @@ public class Category {
 	private Integer id;
 	
 	@Column(name = "Name")
-	@NotEmpty(message ="tên không đc để trống")
+	@NotEmpty(message ="Tên không đc để trống")
 	private String name;
 	
 	@Column(name = "Status")
-	@NotNull(message ="Tráº¡ng thÃ¡i khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng")
+	@NotNull(message ="Trạng thái không được để trống")
 	private boolean status;
 	
 	@OneToMany(mappedBy = "id")//map den cot id cua bang entity.product
@@ -35,8 +38,8 @@ public class Category {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(Integer id, @NotNull(message = "TÃªn khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng") String name,
-			@NotNull(message = "Tráº¡ng thÃ¡i khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng") boolean status,
+	public Category(Integer id, @NotNull(message = "Tên không đc để trống") String name,
+			@NotNull(message = "Trạng thái không được để trống") boolean status,
 			List<Product> listProduct) {
 		super();
 		this.id = id;
@@ -77,7 +80,10 @@ public class Category {
 		this.listProduct = listProduct;
 	}
 
-	
+	public static void main(String[] args) {
+		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
+		System.out.println(categoryDao.getAll());
+	}
 	
 	
 }

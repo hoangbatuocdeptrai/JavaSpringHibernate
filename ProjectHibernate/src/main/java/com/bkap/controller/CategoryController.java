@@ -1,5 +1,6 @@
 package com.bkap.controller;
 
+import java.io.Console;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bkap.dao.CategoryDao;
 import com.bkap.entity.Category;
@@ -27,21 +29,19 @@ public class CategoryController {
 	
 	@RequestMapping(value = {"/","/listCategory"})
 	public String listCate(Model model) {
-//		CategoryDaoImpl cateDao = new CategoryDaoImpl();
 		List<Category> lst = cateDao.getAll();
 		model.addAttribute("ca", lst);
+		System.out.println(lst);
 		return "/Admin/category/list";
 	}
 	@RequestMapping(value = "/search")
 	public String listSearch(Model model, @RequestParam("name")String name) {
-//		CategoryDaoImpl cateDao = new CategoryDaoImpl();
 		List<Category> lst = cateDao.searchByName(name);
 		if(lst == null) {
 			List<Category> list = cateDao.getAll();
 			model.addAttribute("ca", lst);
 			return "redirect:listCategory";
 		}else {
-			
 			model.addAttribute("ca", lst);
 			return "/Admin/category/list";
 		}
@@ -70,17 +70,26 @@ public class CategoryController {
 		boolean bl = cateDao.insert(c);
 //		if(bl) {
 //			return "redirect:listCategory";
+//		
+//		List<Category> list = cateDao.getAllName();
+//		for (Category a : list) {
+//			if(((List<Category>) a).equals(c.getName())) {
+//				model.addAttribute("err", "Không nhập trùng ");
+//				return "/Admin/category/insert";
+//			}
 //		}
+		
+        
+        
 		if(result.hasErrors()) {
 			model.addAttribute("err", "Thêm không thành công");
 			model.addAttribute("c", c);
 			return "/Admin/category/insert";
-		}else if(c.getName().equals(c.getName())) {
-			model.addAttribute("err", "Không nhập trùng ");
-			return "/Admin/category/insert";
 		}else{
+			model.addAttribute("c", c);
 			return "redirect:listCategory";
 		}
+		
 	}
 	
 	@RequestMapping(value = "/initUpdate")
@@ -100,15 +109,17 @@ public class CategoryController {
 	public String updateCategory(@Valid @ModelAttribute("c")Category c, BindingResult result,Model model) {
 		boolean bl = cateDao.update(c);
 		if(result.hasErrors()) {
-			model.addAttribute("err", "Thêm không thành công");
+			model.addAttribute("err", "Sửa không thành công");
 			model.addAttribute("c", c);
 			return "/Admin/category/update";
-		}else if(this.category > 0) {
-			model.addAttribute("err", "Không nhập trùng ");
-			model.addAttribute("c", c);
-			return "/Admin/category/update";
-		}else {
-			model.addAttribute("err", "Them thanh cong ");
+		}
+//		else if(this.category > 0) {
+//			model.addAttribute("err", "Không nhập trùng ");
+//			model.addAttribute("c", c);
+//			return "/Admin/category/update";
+//		}
+		else {
+			model.addAttribute("err", "sửa thành công cong ");
 			return "redirect:listCategory";
 		}
 	}
