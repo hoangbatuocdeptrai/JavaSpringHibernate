@@ -35,15 +35,15 @@
 							<table class="table table-dark" border="1">
 								<tr>
 									<td>Id</td>
-									<td>${b.id}</td>
+									<td>${p.id}</td>
 								</tr>
 								<tr>
 									<td>Name</td>
-									<td>${b.name }</td>
+									<td>${p.name }</td>
 								</tr>
 								<tr>
 									<td>Status</td>
-									<td>${b.status ? "Còn":"Hết" }</td>
+									<td>${p.status ? "Còn":"Hết" }</td>
 								</tr>
 								<tr>
 									<td><a href="${pageContext.request.contextPath}/admin/category/" class="btn btn-sm btn-primary">Back</a></td>

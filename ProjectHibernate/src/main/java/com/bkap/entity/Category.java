@@ -80,10 +80,6 @@ public class Category {
 		this.listProduct = listProduct;
 	}
 
-	public static void main(String[] args) {
-		CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-		System.out.println(categoryDao.getAll());
-	}
 	
 	
 }

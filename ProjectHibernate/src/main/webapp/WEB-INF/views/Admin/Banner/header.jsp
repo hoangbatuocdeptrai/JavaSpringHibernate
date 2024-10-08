@@ -9,10 +9,13 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="${pageContext.request.contextPath}/resources/admin/images/logos/favicon.png" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/css/styles.min.css" />
-    <link rel="stylesheet" href="A" />
+    <style type="text/css">
+    	
+    </style>
 </head>
 
 <body>
+
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
          data-sidebar-position="fixed" data-header-position="fixed">
@@ -35,6 +38,7 @@
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">UI COMPONENTS</span>
+                            <span class="hide-menu">Hello ${username }</span>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="${pageContext.request.contextPath}/admin/category/" aria-expanded="false">
@@ -81,21 +85,14 @@
                             <span class="hide-menu">AUTH</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                            <a class="sidebar-link" href="${pageContext.request.contextPath}/admin/login/logout" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-login"></i>
                                 </span>
-                                <span class="hide-menu">Login</span>
+                                <span class="hide-menu">Logout</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Register</span>
-                            </a>
-                        </li>
+                       
                         
                     </ul>
                
@@ -129,7 +126,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    <img src="~/Content/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                                    
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                                     <div class="message-body">

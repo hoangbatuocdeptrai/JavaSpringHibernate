@@ -14,11 +14,11 @@ public class Users {
 	private Integer id;
 	
 	@Column(name = "UserName")
-	@NotEmpty(message = "Má»�i báº¡n nháº­p TÃ i Khoáº£n")
+	@NotEmpty(message = "Tên đăng nhập không được để trống")
 	private String userName;
 	
 	@Column(name = "Password")
-	@NotEmpty(message = "Má»�i báº¡n nháº­p Máº­t Kháº©u")
+	@NotEmpty(message = "Mật khẩu không được để trống")
 	private String password;
 
 	public Users() {
@@ -26,8 +26,8 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(Integer id, @NotEmpty(message = "Má»�i báº¡n nháº­p TÃ i Khoáº£n") String userName,
-			@NotEmpty(message = "Má»�i báº¡n nháº­p Máº­t Kháº©u") String password) {
+	public Users(Integer id, @NotEmpty(message = "Tên đăng nhập không được để trống") String userName,
+			@NotEmpty(message = "Mật khẩu không được để trống") String password) {
 		super();
 		this.id = id;
 		this.userName = userName;

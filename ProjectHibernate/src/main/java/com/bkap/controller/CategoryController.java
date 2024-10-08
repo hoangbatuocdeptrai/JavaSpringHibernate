@@ -1,6 +1,7 @@
 package com.bkap.controller;
 
 import java.io.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -27,25 +28,55 @@ public class CategoryController {
 	@Autowired
 	private CategoryDaoImpl cateDao;
 	
-	@RequestMapping(value = {"/","/listCategory"})
-	public String listCate(Model model) {
-		List<Category> lst = cateDao.getAll();
-		model.addAttribute("ca", lst);
-		System.out.println(lst);
-		return "/Admin/category/list";
-	}
+	@RequestMapping(value = {"/", "/listCategory"})
+    public String listCate(Model model, @RequestParam(defaultValue = "1") int page,
+                           @RequestParam(defaultValue = "2") int size) {
+        List<Category> lst = cateDao.getAll(page, size);
+        long totalCategories = cateDao.count();
+        int totalPages = (int) Math.ceil((double) totalCategories / size);
+        model.addAttribute("ca", lst);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        return "/Admin/category/list";
+    }
+	
 	@RequestMapping(value = "/search")
-	public String listSearch(Model model, @RequestParam("name")String name) {
-		List<Category> lst = cateDao.searchByName(name);
-		if(lst == null) {
-			List<Category> list = cateDao.getAll();
-			model.addAttribute("ca", lst);
-			return "redirect:listCategory";
+	public String listSearch(Model model, @RequestParam("name")String name, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "2") int size) {
+		List<Category> lst = cateDao.searchByName(name, page, size);
+		List<Category> lstt = cateDao.getAll(page, size);
+		if(name == null) {
+			
+	        long totalCategories = cateDao.count();
+	        int totalPages = (int) Math.ceil((double) totalCategories / size);
+	        model.addAttribute("ca", lstt);
+	        model.addAttribute("currentPage", page);
+	        model.addAttribute("totalPages", totalPages);
+	        return "/Admin/category/list";
 		}else {
+			
+			long totalCategories = cateDao.countByName(name);
+			int totalPages = (int) Math.ceil((double) totalCategories / size);
 			model.addAttribute("ca", lst);
+			model.addAttribute("currentPage", page);
+			model.addAttribute("totalPages", totalPages);
 			return "/Admin/category/list";
+			
 		}
+		
 	}
+	
+//	@RequestMapping(value = "/search")
+//	public String listSearch(Model model, @RequestParam("name")String name) {
+//		List<Category> lst = cateDao.searchByName(name);
+//		if(lst == null) {
+////			List<Category> list = cateDao.getAll();
+//			model.addAttribute("ca", lst);
+//			return "redirect:listCategory";
+//		}else {
+//			model.addAttribute("ca", lst);
+//			return "/Admin/category/list";
+//		}
+//	}
 	
 	@RequestMapping(value = "/details")
 	public String detailCategory(@RequestParam("id") Integer id, Model model) {
@@ -67,28 +98,39 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
 	public String insertCategory(@ModelAttribute("c") @Valid Category c, BindingResult result,  Model model) {
-		boolean bl = cateDao.insert(c);
-//		if(bl) {
-//			return "redirect:listCategory";
-//		
-//		List<Category> list = cateDao.getAllName();
-//		for (Category a : list) {
-//			if(((List<Category>) a).equals(c.getName())) {
+		try {
+	
+
+			List<String> list = cateDao.getAllName();
+			
+			for (String category : list) {
+				if(c.getName().equals(category)) {
+//					test = 1;
+					model.addAttribute("err", "Không nhập trùng ");
+					return "/Admin/category/insert";
+				}
+			}
+			
+	        
+			if(result.hasErrors()) {
+				model.addAttribute("err", "Thêm không thành công");
+				model.addAttribute("c", c);
+				return "/Admin/category/insert";
+			}
+//			else if(test == 1){
 //				model.addAttribute("err", "Không nhập trùng ");
 //				return "/Admin/category/insert";
 //			}
-//		}
-		
-        
-        
-		if(result.hasErrors()) {
-			model.addAttribute("err", "Thêm không thành công");
-			model.addAttribute("c", c);
-			return "/Admin/category/insert";
-		}else{
-			model.addAttribute("c", c);
-			return "redirect:listCategory";
+			else{
+				boolean bl = cateDao.insert(c);
+				model.addAttribute("c", c);
+				return "redirect:listCategory";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
 		}
+		return null;
 		
 	}
 	
@@ -125,17 +167,20 @@ public class CategoryController {
 	}
 	
 	@RequestMapping("/deleteCa")
-	public String deleteCategory(@RequestParam("id")Integer id, Model model) {
+	public String deleteCategory(@RequestParam("id")Integer id, Model model, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "2") int size) {
 		boolean bl = cateDao.delete(id);
 		
 		if(bl) {
 			model.addAttribute("err", "Xóa thành công");
+			List<Category> lst = cateDao.getAll(page, size);
+			model.addAttribute("ca", lst); 
+			return "/Admin/category/list";
 		}else {
 			model.addAttribute("err", "Xóa không thành công");
+			List<Category> lst = cateDao.getAll(page, size);
+			model.addAttribute("ca", lst); 
+			return "/Admin/category/list";
 		}
-		List<Category> lst = cateDao.getAll();
-		model.addAttribute("ca", lst);
-		return "/Admin/category/list";
 	}
 
 	

@@ -1,15 +1,17 @@
-
+<%@ include file="../Banner/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<div class="content-header">
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1 class="m-0">Hello</h1>
+					<h1 class="m-0">Add Category</h1>
 				</div>
 				<!-- /.col -->
 				<div class="col-sm-6">
@@ -33,7 +35,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header border-0">
-							<table class="table table-dark" border="1">
+							<table class="table" border="1">
 								<tr>
 									<td>Id</td>
 									<td>${b.id}</td>
@@ -48,15 +50,16 @@
 								</tr>
 								<tr>
 									<td>Image</td>
-									<td>${b.image}</td>
-								</tr>
-								<tr>
-									<td>Description</td>
-									<td>${b.description}</td>
+									<td><img alt="" src="${pageContext.request.contextPath}/resource/Test/${b.image}"
+											width="110px"></td>
 								</tr>
 								<tr>
 									<td>CategoryName</td>
 									<td>${b.categoryId.name}</td>
+								</tr>
+								<tr>
+									<td>Description</td>
+									<td>${b.description}</td>
 								</tr>
 								
 								
@@ -78,6 +81,8 @@
 					<div class="card-body table-responsive p-0"></div>
 
 				</div>
+
+				</div>
 				<!-- /.card -->
 			</div>
 		</div>
@@ -90,3 +95,5 @@
 <aside class="control-sidebar control-sidebar-dark">
 	<!-- Control sidebar content goes here -->
 </aside>
+<!-- /.control-sidebar -->
+<%@ include file="../Banner/footer.jsp"%>
