@@ -59,7 +59,7 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="${pageContext.request.contextPath}/customer/index" class="nav-link">Home</a></li>
+	          <li class="nav-item active"><a href="${pageContext.request.contextPath}/index" class="nav-link">Home</a></li>
 	          <li class="nav-item dropdown">
 	          <a class="nav-link dropdown" href="${pageContext.request.contextPath}/shop">Shop</a>
               <!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>

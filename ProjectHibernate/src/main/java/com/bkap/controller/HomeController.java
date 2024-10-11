@@ -19,7 +19,7 @@ public class HomeController {
 	private CategoryDaoImpl cateDao;
 	
 	
-    @GetMapping("/customer/index")
+    @GetMapping("/index")
     public String index(Model model) {
     	List<Product> lst = proDao.getAllNewProduct();
     	
